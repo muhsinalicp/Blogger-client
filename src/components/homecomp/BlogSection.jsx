@@ -97,18 +97,22 @@ function BlogSection() {
           (
             <div key={post.id} className="w-full h-[60vh] flex flex-col justify-between" >
               <div className="h-3/4">
-              <img src={post.image} alt={post.title} className="w-full h-3/4 object-cover" />
+                <img src={post.image} alt={post.title} className="w-full h-3/4 object-cover" />
                 <h2 className="text-2xl font-bold">{post.title}</h2>
                 <p className="text-gray-600">{post.Description}</p>
               </div>
 
               <div>
-                <button className="  px-2   border-black border-b-2 cursor-pointer">Read More</button>
+                <button className="px-2  hover:tracking-wide duration-300  border-black border-b-2 cursor-pointer">Read More</button>
               </div>
 
             </div>
-
           ))}
+
+
+        </div>
+        <div className="w-full  py-4 flex justify-center ">
+          <button className="bg-black text-white px-4 py-2 rounded-md">view more</button>
         </div>
       </div>
 

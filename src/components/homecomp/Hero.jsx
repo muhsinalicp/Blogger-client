@@ -1,7 +1,10 @@
-import hero from '../../assets/hero.jpg'
+import { useQuery } from '@tanstack/react-query';
+import { blogsQueryOptions } from '../../queryOptions/fetchBlogs';
 import Navbar from './Navbar'
 
-function Hero() {
+function Hero() { 
+  
+
   return (
     <div className="bg-[url('/src/assets/hero.jpg')] h-screen w-screen bg-cover">
       <Navbar />
