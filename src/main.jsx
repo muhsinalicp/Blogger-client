@@ -4,16 +4,17 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { ToastContainer } from 'react-toastify'
+import { Provider } from 'react-redux'
+import { AuthProvider } from './context/context.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
         <App >
           <ReactQueryDevtools initialIsOpen={false} />
-          {/* <ToastContainer /> */}
         </App>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   </StrictMode>,
 )

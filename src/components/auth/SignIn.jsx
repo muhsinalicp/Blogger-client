@@ -1,22 +1,31 @@
 import { useMutation } from '@tanstack/react-query';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { BiSolidLeaf } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { signInUser } from '../../queryOptions/signIn';
+import { AuthContext } from '../../context/context';
 
 export default function SignIn() {
+
+    const nav = useNavigate();
 
     const [form, setForm] = useState({
         username: "",
         password: ""
     })
 
+    const auth = useContext(AuthContext);
+
     const [err, setErr] = useState({});
 
     const mutation = useMutation({
         mutationFn: signInUser,
         onSuccess: (data) => {
-            console.log(data);
+            if (data.message === "Login successful") 
+            {
+                auth.setIsAuth(true);
+                nav("/");
+            }
         },
         onError: (error) => {
             if (error.message === "User not found") 
