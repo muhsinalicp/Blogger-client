@@ -15,7 +15,7 @@ export default function ViewBlogs() {
 
 
     const {data,isLoading} = useQuery({
-        queryKey:["blog"],
+        queryKey:["blogs",id],
         queryFn:()=>fetchDynamicBlogs(id)
     }
     );
