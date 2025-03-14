@@ -4,10 +4,14 @@ import { BiSolidLeaf } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInUser } from '../../queryOptions/signIn';
 import { AuthContext } from '../../context/context';
+import { RxEyeOpen } from 'react-icons/rx';
+import { GoEye, GoEyeClosed } from 'react-icons/go';
 
 export default function SignIn() {
 
     const nav = useNavigate();
+
+    const [show, setShow] = useState(false);
 
     const [form, setForm] = useState({
         username: "",
@@ -82,14 +86,19 @@ export default function SignIn() {
                     </h1>
                     <div className='w-3/4'>
                         {inputs.map((input) => (
-                            <div key={input.name} className='flex flex-col items-center  py-2'>
-
-                                <input type={input.type}
+                            <div key={input.name} className='flex flex-col items-center relative  py-2'>
+                                <input 
+                                    type={input.type === "password" ? show ? "text" : "password" : "text"}
                                     name={input.name}
                                     value={form[input.name]}
                                     placeholder={input.label}
-                                    className="w-full py-2 border-b border-black focus:outline-none focus:placeholder-transparent"
+                                    className="w-full py-2 border-b border-black focus:outline-none  focus:placeholder-transparent"
                                     onChange={handleChange} />
+                                {input.type === "password" && (
+                                   <div onClick={()=>setShow(!show)}>
+                                    {show ?  <GoEyeClosed size={20} className='absolute bottom-10 right-2'/>:<GoEye size={20} className='absolute bottom-10 right-2'/>}
+                                   </div>
+                                )}
                                 <div className='w-full h-4 text-center '>
                                     <p className="text-red-700 text-sm">{err[input.name]}</p>
                                 </div>
